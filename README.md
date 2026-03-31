@@ -1,4 +1,4 @@
-# DEG supplementary results in the ICML rebuttal period
+# ICML 15337 submission: Supplementary results in the rebuttal period
 
 ## Section1. Updating the reward diagram.
 
