@@ -42,11 +42,11 @@ ___
 
 ## Section4. Hyper-parameters sensitivity experiments.
 
-Regarding the coefficients among different rewards, our goal was to scale them to a similar order of magnitude (range from 10 to 100), which results in good performance. We first change the weighing between coarse-grained reward and fine-grained reward, the results below demonstrate that a similar order of magnitude can better scale these two terms.
+Regarding the coefficients among different rewards, our goal was to scale them to a similar order of magnitude (range from 10 to 100), which results in good performance. We first change the weighing between coarse-grained reward and fine-grained reward in DEG, the results below demonstrate that a similar order of magnitude can better scale these two terms.
 
 ![Example Image](image/alphabeta.png)
 
-Then, we change the coefficient of the success sparse reward, as shown below. The larger weights results in better performance, which is consistent with our intuitation, while 10 is enough for effective learning.
+Then, we change the coefficient of the success sparse reward in DEG+ (DEG+ = DEG + success sparse reward), as shown below. The larger weights results in better performance, which is consistent with our intuitation, while 10 is enough for effective learning.
 
 ![Example Image](image/theta.png)
 
@@ -73,7 +73,7 @@ ___
 
 ## Section7. Direct comparison between DEG and DEG+.
 
-We include the DEG results in the DEG+ figure and directly compare them. With success sparse reward, our method can perform much better, which is consistent with intuiation.
+We include the DEG results in the DEG+ (DEG with success sparse reward) figure and directly compare them. With success sparse reward, our method can perform much better, which is consistent with intuiation.
 ![Example Image](image/full-comparison.png)
 
 ___
@@ -81,7 +81,7 @@ ___
 
 ## Section8. Further reducing the videos used in DEG.
 
-We further conducted additional experiments on the number of video clips. For drawer-open, shorDEG and DEG+ can also work well with less videos, while more videos are better choice is possible. 
+We further conducted additional experiments on the number of video clips. For drawer-open, less videos measn the number of videos is reduced from 3 to 1 (3->1). For coffee-button, the number is 5->3. DEG and DEG+ (DEG with success sparse reward) can also work well with less videos, while a bit more videos are better choice is possible. 
 
 ![Example Image](image/less_videos_deg_1_2.png)
 ![Example Image](image/less_videos_deg+_1_2.png)
@@ -106,7 +106,7 @@ DrQv2, a value-based method built upon DDPG, employs a linearly decaying action 
 1. fixed the action sampling std of one to its maximum value of 1, marked with 'std = 1';
 2. fixed the action sampling std to a larger value of 2, marked with 'std = 2'.
 
-Under these two backbone variants, we validated the ability of DEG to improve performance when combined with sparse success rewards. The results show that using a backbone with stronger exploration does improve the efficiency of exploring sparse success rewards, but its performance is still far inferior to that with DEG’s dense rewards.
+Under these two backbone variants, we validated the ability of DEG to improve performance when combined with sparse success rewards (i.e., the performance of DEG+). The results show that using a backbone with stronger exploration does improve the efficiency of exploring sparse success rewards, but its performance is still far inferior to that with DEG dense rewards.
 
 | drawer-open-300k | DEG+ | Success Sparse Reward|
 |-|-|-|
@@ -132,7 +132,7 @@ ___
 
 ## Section12. Multitask ability of DEG.
 
-We test the DEG's performance when faced with multiple tasks. We finetune a same RL guide for three different domains simultaneously: drawer-open, door-close, and coffee-button. This guide is used in all three tasks' RL process. The results demonstrate that DEG multitask can also conduct effective RL alone or improve the performance of Success Sparse Reward.
+We test the DEG's performance when faced with multiple tasks. We finetune a same RL guide for three different domains simultaneously: drawer-open, door-close, and coffee-button. This guide is used in all three tasks' RL process. The results demonstrate that DEG multitask can also conduct effective RL alone or improve the performance of Success Sparse Reward (i.e., DEG+).
 
 
 | task| DEG | DEG multitask| 
@@ -171,7 +171,7 @@ We would like to note that these methods (VLAC, Robo-dopamine, VLA-RFT, and NORA
 
 Considering that NORA 1.5 employs preference specified for large model for DPO rather than rewards, VLA-RFT requires several action-labeled trajectories for both wm training and rewards, we following your suggestions, comparing DEG with robodopamine. In addition, a contemporary Related work of robodopamine, roboreward, is also introduced as an additional baseline. These two are both large model-based reward design methods which can be easily decoupled from VLA, and they only require a few action-free videos for finetuning (or no requirements), making them more suitable for comparison. 
 
-The comparison between DEG and roboreward is shown below, where DEG performs better across all reward-free tasks.
+The comparison between DEG and roboreward on reward-free tasks is shown below, where DEG performs better across all reward-free tasks.
 |Task|Roboreward|DEG|
 |-|-|-|
 |button-press|0.20|**1.00**|
@@ -187,7 +187,7 @@ The comparison between DEG and roboreward is shown below, where DEG performs bet
 |window-close|0.00|**0.92**|
 |window-open|0.00|**0.73**|
 
-For Robodopamine, we employ the same expert videos (used in DEG) to construct the finetuning dataset and then finetune its pre-trained models on the target task, which follows its official instructions. Due to the shor period of rebuttal and computation limitation, we only complete 6 tasks of Robodopamine by March 31. All results will be provided later. DEG also exhibits better performance across all tasks.
+For Robodopamine, we employ the same expert videos (used in DEG) to construct the finetuning dataset and then finetune its pre-trained models on the target task, which follows its official instructions. Due to the short period of rebuttal and computation limitation, we only complete 6 tasks of Robodopamine by March 31. All results will be provided later. DEG also exhibits better performance across all tasks.
 
 |Task|Robodopamine|DEG|
 |-|-|-|
