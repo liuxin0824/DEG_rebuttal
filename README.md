@@ -18,3 +18,18 @@ In contrast, the DEG contrastive encoder shows significantly stronger discrimina
 ![Example Image](image/degencoder.png)
 
 In summary, DEG encoder can better align frames with similar semantics and well map the semantic distances between different frames to their latent distances.
+
+## Section3. DEG is robust to both seen and unseen episodes (initial states).
+
+We visualize the used expert videos and generated RL episodes when faced with both seen and unseen initial states. DEG can well handle ood episodes and generates qualified RL gudiance.
+
+Simulation:
+![Example Image](image/sim_videos_comparison.png)
+
+Real-world tasks:
+![Example Image](image/real_videos_comparison.png)
+
+
+## Section4. Hyper-parameters sensitivity experiments.
+
+
