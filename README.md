@@ -126,17 +126,32 @@ We test the DEG's performance when faced with multiple tasks. We finetune a same
 
 # Section12. Discussion of missed related works.
 
-Thank you for pointing out these important related works. We agree that reward densification for robotic manipulation has been studied, and we will expand the Related Work section to better position DEG.
-Broadly, existing approaches can be categorized into two main directions:
-(1) Foundation model-based reward methods (e.g., [a, b]): These approaches learn a large parametric reward function (often based on VLMs) to predict task progress or success signals, which are then used to guide RL optimization. In contrast, DEG does not rely on training an explicit reward model. Instead, it directly computes rewards via contrastive matching between observations and reference trajectories, avoiding the need for additional reward supervision and model training.
-(2) World model-based or rollout-based methods (e.g., [c, d]): These methods leverage learned world models to generate future trajectories conditioned on candidate actions, and derive rewards from predicted outcomes. While effective, they typically require training an action-conditioned generative model that captures environment dynamics across diverse behaviors. In contrast, DEG bypasses action-conditioned rollout by leveraging video generation models to produce reference frames, and computes rewards based on alignment to these frames, resulting in a simpler and more direct reward construction pipeline.
-In summary, DEG differs from prior work in that it does not rely on either learned reward models or action-conditioned world models, but instead formulates reward densification as a contrastive trajectory matching problem, which provides a lightweight yet effective alternative.
+We expand the Related Work section with several missed approaches [1,2,3,4] to better position DEG.
+
+[1] A vision-language-action-critic model for robotic real-world reinforcement learning.
+
+[2] VLA-RL: Towards Masterful and General Robotic Manipulation with Scalable Reinforcement Learning
+
+[3] Vla-rft: Vision-language-action reinforcement fine-tuning with verified rewards in world simulators
+
+[4] NORA-1.5: A Vision-Language-Action Model Trained using World Modeland Action-based Preference Rewards
+
+![Example Image](image/relatedwork.png)
 
 # Section13. We add additional baselines: Robodopamine and Roboreward.
 
-We would like to note that these methods are primarily designed for post-training or fine-tuning of VLA models, where the policy already exhibits a certain level of task competence. In contrast, DEG is designed for low-level control policy learning, where the reward function must provide meaningful guidance even under highly random initial behaviors (i.e., from scratch). This difference in setting makes direct comparison non-trivial, as some methods rely on reasonably good initial policies or stable rollouts to function effectively.
+We would like to note that these methods (VLAC, Robo-dopamine, VLA-RFT, and NORA1.5) are primarily designed for post-training or fine-tuning of VLA models, where the policy already exhibits a certain level of task competence. In contrast, DEG is designed for low-level control policy learning, where the reward function must provide meaningful guidance even under highly random initial behaviors (i.e., from scratch). This difference in setting makes direct comparison non-trivial, as some methods rely on reasonably good initial policies or stable rollouts to function effectively.
 
-Considering that NORA 1.5 employs preference specified for large model for DPO rather than rewards, VLA-RFT requires several action-labeled trajectories for both wm training and rewards, we following your suggestions, comparing DEG with robodopamine. In addition, a contemporary Related work of robodopamine, roboreward, is also introduced as an additional baseline. These two are both large model-based reward design methods which can be easily decoupled from VLA, and they only require a few action-free videos for finetuning (or no requirements), making them more suitable for comparison. The results are shown  in Sec via the link . DEG shows superior performance upon these two recent advanced methods.
+Considering that NORA 1.5 employs preference specified for large model for DPO rather than rewards, VLA-RFT requires several action-labeled trajectories for both wm training and rewards, we following your suggestions, comparing DEG with robodopamine. In addition, a contemporary Related work of robodopamine, roboreward, is also introduced as an additional baseline. These two are both large model-based reward design methods which can be easily decoupled from VLA, and they only require a few action-free videos for finetuning (or no requirements), making them more suitable for comparison. 
+
+The comparison between DEG and roboreward is shown below, where DEG performs better across all tasks.
+
+| task| DEG+ | DEG+ multitask| 
+|-|-|-|
+| drawer-open |  1.00 | 1.00  |
+| door-close | 1.00 | 1.00 | 
+| coffee-button | 1.00| 1.00 | 
+
 
 # Section14. Visualization of generated videos without finetuning.
 
