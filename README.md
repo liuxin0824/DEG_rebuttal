@@ -1,4 +1,4 @@
-# DEG additional experiments in the rebuttal period
+# DEG additional experiments in the ICML rebuttal period
 
 ## Section1. Updating the reward diagram.
 
@@ -31,5 +31,11 @@ Real-world tasks:
 
 
 ## Section4. Hyper-parameters sensitivity experiments.
+
+Regarding the coefficients among different rewards, our goal was to scale them to a similar order of magnitude (range from 10 to 100), which results in good performance. We first change the weighing between coarse-grained reward and fine-grained reward, the results below demonstrate that a similar order of magnitude can better scale these two terms.
+
+![Example Image](image/theta.png)
+
+Then, we change the coefficient of the success sparse reward, as shown below. The larger weights results in better performance, which is consistent with our intuitation, while 10 is enough for effective learning.
 
 
