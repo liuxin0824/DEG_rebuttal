@@ -124,7 +124,7 @@ We test the DEG's performance when faced with multiple tasks. We finetune a same
 | door-close | 1.00 | 1.00 | 
 | coffee-button | 1.00| 1.00 | 
 
-#Section12. Discussion of missed related works.
+# Section12. Discussion of missed related works.
 
 Thank you for pointing out these important related works. We agree that reward densification for robotic manipulation has been studied, and we will expand the Related Work section to better position DEG.
 Broadly, existing approaches can be categorized into two main directions:
@@ -132,7 +132,7 @@ Broadly, existing approaches can be categorized into two main directions:
 (2) World model-based or rollout-based methods (e.g., [c, d]): These methods leverage learned world models to generate future trajectories conditioned on candidate actions, and derive rewards from predicted outcomes. While effective, they typically require training an action-conditioned generative model that captures environment dynamics across diverse behaviors. In contrast, DEG bypasses action-conditioned rollout by leveraging video generation models to produce reference frames, and computes rewards based on alignment to these frames, resulting in a simpler and more direct reward construction pipeline.
 In summary, DEG differs from prior work in that it does not rely on either learned reward models or action-conditioned world models, but instead formulates reward densification as a contrastive trajectory matching problem, which provides a lightweight yet effective alternative.
 
-#Section13. We add additional baselines: Robodopamine and Roboreward.
+# Section13. We add additional baselines: Robodopamine and Roboreward.
 
 We would like to note that these methods are primarily designed for post-training or fine-tuning of VLA models, where the policy already exhibits a certain level of task competence. In contrast, DEG is designed for low-level control policy learning, where the reward function must provide meaningful guidance even under highly random initial behaviors (i.e., from scratch). This difference in setting makes direct comparison non-trivial, as some methods rely on reasonably good initial policies or stable rollouts to function effectively.
 
