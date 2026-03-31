@@ -177,4 +177,8 @@ For Robodopamine, we employ the same expert videos (used in DEG) to construct th
 
 # Section14. Visualization of generated videos without finetuning.
 
+Without domain adaptation, the large model does not know that the drawer is fixed, yet it still maintains a reasonable understanding of the environment and the dynamics of the robotic arm.
+
+![Example Image](image/nottuned.png)
+
 
