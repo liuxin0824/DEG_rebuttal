@@ -138,3 +138,6 @@ We would like to note that these methods are primarily designed for post-trainin
 
 Considering that NORA 1.5 employs preference specified for large model for DPO rather than rewards, VLA-RFT requires several action-labeled trajectories for both wm training and rewards, we following your suggestions, comparing DEG with robodopamine. In addition, a contemporary Related work of robodopamine, roboreward, is also introduced as an additional baseline. These two are both large model-based reward design methods which can be easily decoupled from VLA, and they only require a few action-free videos for finetuning (or no requirements), making them more suitable for comparison. The results are shown  in Sec via the link . DEG shows superior performance upon these two recent advanced methods.
 
+# Section14. Visualization of generated videos without finetuning.
+
+
