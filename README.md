@@ -72,4 +72,32 @@ We further conducted additional experiments on the number of video clips. For dr
 
 ## Section9. Employing nearest neighbor rewards directly on videos.
 
+We don't employ RL episodic guide, directly employing nearest expert video in DEG, marked as DEG no guide. Results demonstrate that episodic guidance is useful.
+
+| task | DEG | DEG no guide|
+|-|-|-|
+| button-press-topdown    |  **0.80** |   0.57   |
+| faucet-close |**0.93**| 0.33|
+
+# Section10. combining DEG with RL backbone with higher exploration.
+
+DrQv2, a value-based method built upon DDPG, employs a linearly decaying action std scale (from 1 to 0.1) to balance exploration and exploitation. We further modify the exploration strategy of the RL method to investigate DEG’s performance with a stronger exploration backbone. Specifically, we:
+
+1. fixed the action sampling std of one to its maximum value of 1, marked with 'std = 1';
+2. fixed the action sampling std to a larger value of 2, marked with 'std = 2'.
+
+Under these two backbone variants, we validated the ability of DEG to improve performance when combined with sparse success rewards. The results show that using a backbone with stronger exploration does improve the efficiency of exploring sparse success rewards, but its performance is still far inferior to that with DEG’s dense rewards.
+
+| drawer-open-300k | DEG+ | Success Sparse Reward|
+|-|-|-|
+| std decaying   |  **1.00** |   0.20  |
+| std = 1 |**1.00**| 0.33|
+| std = 2 |**1.00**| 0.67|
+
+| drawer-open-100k | DEG+ | Success Sparse Reward|
+|-|-|-|
+| std decaying   |  **1.00** |   0.00   |
+| std = 1 |**1.00**| 0.00|
+| std = 2 |**0.97**| 0.23|
+
 
