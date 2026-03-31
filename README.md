@@ -99,7 +99,7 @@ We don't employ RL episodic guide, directly employing nearest expert video in DE
 
 ___
 
-# Section10. combining DEG with RL backbone with higher exploration.
+## Section10. combining DEG with RL backbone with higher exploration.
 
 DrQv2, a value-based method built upon DDPG, employs a linearly decaying action std scale (from 1 to 0.1) to balance exploration and exploitation. We further modify the exploration strategy of the RL method to investigate DEG’s performance with a stronger exploration backbone. Specifically, we:
 
@@ -122,7 +122,7 @@ Under these two backbone variants, we validated the ability of DEG to improve pe
 
 ___
 
-# Section11. Numerical comparison between all methods on main tasks.
+## Section11. Numerical comparison between all methods on main tasks.
 
 We summarize the quantitative performance of different methods on main tasks using a table.
 
@@ -130,7 +130,7 @@ We summarize the quantitative performance of different methods on main tasks usi
 
 ___
 
-# Section12. Multitask ability of DEG.
+## Section12. Multitask ability of DEG.
 
 We test the DEG's performance when faced with multiple tasks. We finetune a same RL guide for three different domains simultaneously: drawer-open, door-close, and coffee-button. This guide is used in all three tasks' RL process. The results demonstrate that DEG multitask can also conduct effective RL alone or improve the performance of Success Sparse Reward.
 
@@ -149,7 +149,7 @@ We test the DEG's performance when faced with multiple tasks. We finetune a same
 
 ___
 
-# Section13. Discussion of missed related works.
+## Section13. Discussion of missed related works.
 
 We expand the Related Work section with several missed approaches [1,2,3,4] to better position DEG.
 
@@ -165,7 +165,7 @@ We expand the Related Work section with several missed approaches [1,2,3,4] to b
 
 ___
 
-# Section14. We add additional baselines: Robodopamine and Roboreward.
+## Section14. We add additional baselines: Robodopamine and Roboreward.
 
 We would like to note that these methods (VLAC, Robo-dopamine, VLA-RFT, and NORA1.5) are primarily designed for post-training or fine-tuning of VLA models, where the policy already exhibits a certain level of task competence. In contrast, DEG is designed for low-level control policy learning, where the reward function must provide meaningful guidance even under highly random initial behaviors (i.e., from scratch). This difference in setting makes direct comparison non-trivial, as some methods rely on reasonably good initial policies or stable rollouts to function effectively.
 
@@ -202,7 +202,7 @@ For Robodopamine, we employ the same expert videos (used in DEG) to construct th
 ___
 
 
-# Section15. Visualization of generated videos without finetuning.
+## Section15. Visualization of generated videos without finetuning.
 
 Without domain adaptation, the large model does not know that the drawer is fixed, yet it still maintains a reasonable understanding of the environment and the dynamics of the robotic arm.
 
