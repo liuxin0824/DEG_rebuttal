@@ -1,4 +1,4 @@
-# DEG additional experiments in the ICML rebuttal period
+# DEG supplementary results in the ICML rebuttal period
 
 ## Section1. Updating the reward diagram.
 
@@ -105,4 +105,4 @@ Under these two backbone variants, we validated the ability of DEG to improve pe
 
 We summarize the quantitative performance of different methods on main tasks using a table.
 
-![Example Image](image/numerical.png)
+![Example Image](image/numericalcomparison.png)
