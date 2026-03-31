@@ -105,6 +105,6 @@ Under these two backbone variants, we validated the ability of DEG to improve pe
 
 We summarize the quantitative performance of different methods on main tasks using a table.
 
-![Example Image](image/numericalcomparison.png)
+![Example Image](image/comparison.png)
 
 
