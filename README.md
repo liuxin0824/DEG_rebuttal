@@ -101,3 +101,8 @@ Under these two backbone variants, we validated the ability of DEG to improve pe
 | std = 2 |**0.97**| 0.23|
 
 
+# Section11. Numerical comparison between all methods on main tasks.
+
+We summarize the quantitative performance of different methods on main tasks using a table.
+
+![Example Image](image/numerical.png)
