@@ -107,4 +107,20 @@ We summarize the quantitative performance of different methods on main tasks usi
 
 ![Example Image](image/comparison.png)
 
+# Section12. Multitask ability of DEG.
+
+We test the DEG's performance when faced with multiple tasks. We finetune a same RL guide for three different domains simultaneously: drawer-open, door-close, and coffee-button. This guide is used in all three tasks' RL process. The results demonstrate that DEG multitask can also conduct effective RL alone or improve the performance of Success Sparse Reward.
+
+
+| task| DEG | DEG multitask| 
+|-|-|-|
+| drawer-open |  1.00 | 1.00 | 
+| door-close |1.00| 0.97|
+| coffee-button |1.00| 1.00 |
+
+| task| DEG+ | DEG+ multitask| 
+|-|-|-|
+| drawer-open |  1.00 | 1.00  |
+| door-close | 1.00 | 1.00 | 
+| coffee-button | 1.00| 1.00 | 
 
