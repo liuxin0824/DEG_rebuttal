@@ -146,11 +146,10 @@ Considering that NORA 1.5 employs preference specified for large model for DPO r
 
 The comparison between DEG and roboreward is shown below, where DEG performs better across all tasks.
 
-| task| DEG+ | DEG+ multitask| 
-|-|-|-|
-| drawer-open |  1.00 | 1.00  |
-| door-close | 1.00 | 1.00 | 
-| coffee-button | 1.00| 1.00 | 
+		button-press	cofffee-button	door-close	door-open	drawer-close	drawer-open	faucet-close	handle-press	handle-press-side	plate-slide	window-close	window-open
+roboreward		0.2	0.07	0.57	0	0.47	0	0.13	0.13	0.067	0	0	0
+dopamine-finetuned		0.1	0.03	0.33		0.33	0	0.13			
+
 
 
 # Section14. Visualization of generated videos without finetuning.
