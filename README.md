@@ -144,11 +144,34 @@ We would like to note that these methods (VLAC, Robo-dopamine, VLA-RFT, and NORA
 
 Considering that NORA 1.5 employs preference specified for large model for DPO rather than rewards, VLA-RFT requires several action-labeled trajectories for both wm training and rewards, we following your suggestions, comparing DEG with robodopamine. In addition, a contemporary Related work of robodopamine, roboreward, is also introduced as an additional baseline. These two are both large model-based reward design methods which can be easily decoupled from VLA, and they only require a few action-free videos for finetuning (or no requirements), making them more suitable for comparison. 
 
-The comparison between DEG and roboreward is shown below, where DEG performs better across all tasks.
+The comparison between DEG and roboreward is shown below, where DEG performs better across all reward-free tasks.
+|Task|Roboreward|DEG|
+|-|-|-|
+|button-press|0.20|**1.00**|
+|cofffee-button|0.07|**1.00**|
+|door-close|0.57|**0.98**|
+|door-open|0.00|**1.00**|
+|drawer-close|0.47|**1.00**|
+|drawer-open|0.00|**1.00**|
+|faucet-close|0.13|**0.95**|
+|handle-press|0.13|**0.91**|
+|handle-press-side|0.07|**0.98**|
+|plate-slide|0.00|**0.92**|
+|window-close|0.00|**0.92**|
+|window-open|0.00|**0.73**|
 
-		button-press	cofffee-button	door-close	door-open	drawer-close	drawer-open	faucet-close	handle-press	handle-press-side	plate-slide	window-close	window-open
-roboreward		0.2	0.07	0.57	0	0.47	0	0.13	0.13	0.067	0	0	0
-dopamine-finetuned		0.1	0.03	0.33		0.33	0	0.13			
+For Robodopamine, we employ the same expert videos (used in DEG) to construct the finetuning dataset and then finetune its pre-trained models on the target task, which follows its official instructions. Due to the shor period of rebuttal and computation limitation, we only complete 6 tasks of Robodopamine by March 31. All results will be provided later. DEG also exhibits better performance across all tasks.
+
+|Task|Robodopamine|DEG|
+|-|-|-|
+|button-press|0.10|**1.00**|
+|cofffee-button|0.03|**1.00**|
+|door-close|0.33|**0.98**|
+|drawer-close|0.33|**1.00**|
+|drawer-open|0.00|**1.00**|
+|faucet-close|0.13|**0.95**|
+
+	
 
 
 
