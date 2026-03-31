@@ -63,3 +63,13 @@ We include the DEG results in the DEG+ figure and directly compare them. With su
 
 
 
+## Section8. Further reducing the videos used in DEG.
+
+We further conducted additional experiments on the number of video clips. For drawer-open, shorDEG and DEG+ can also work well with less videos, while more videos are better choice is possible. 
+
+![Example Image](image/less_videos_deg_1_2.png)
+![Example Image](image/less_videos_deg+_1_2.png)
+
+## Section9. Employing nearest neighbor rewards directly on videos.
+
+
