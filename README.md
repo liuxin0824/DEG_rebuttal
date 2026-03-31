@@ -1,10 +1,16 @@
 # ICML 15337 submission: Supplementary results of the proposed DEG in the rebuttal period
 
+
+___
+
+
 ## Section1. Updating the reward diagram.
 
 We further clarify the meanings of different symbols in the schematic diagram to illustrate (i) the differences between the two sub-rewards when applied to the same trajectory, and (ii) how each reward functions across different kinds of trajectories.
 
 ![Example Image](image/table2.png)
+
+___
 
 
 ## Section2. More detailed encoder analysis.
@@ -19,6 +25,8 @@ In contrast, the DEG contrastive encoder shows significantly stronger discrimina
 
 In summary, DEG encoder can better align frames with similar semantics and well map the semantic distances between different frames to their latent distances.
 
+___
+
 ## Section3. DEG is robust to both seen and unseen episodes (initial states).
 
 We visualize the used expert videos and generated RL episodes when faced with both seen and unseen initial states. DEG can well handle ood episodes and generates qualified RL gudiance.
@@ -28,6 +36,8 @@ Simulation:
 
 Real-world tasks:
 ![Example Image](image/real_videos_comparison.png)
+
+___
 
 
 ## Section4. Hyper-parameters sensitivity experiments.
@@ -40,12 +50,16 @@ Then, we change the coefficient of the success sparse reward, as shown below. Th
 
 ![Example Image](image/theta.png)
 
+___
+
 ## Section5. Prompt sensitivity experiments.
 
 In the original paper, we provided as detailed a prompt as possible to maximize generation quality and verify the novel idea of using a large video generation model as an RL guide. In this section, we further conduct fine-tuning with very simple prompts. DEG and DEG+ (DEG with success sparse reward) can still perform effective RL guidance with very brief prompts ‘open the drawer’ and 'push the coffee machine button'.
 
 ![Example Image](image/prompt_sensitivity_deg_1_2.png)
 ![Example Image](image/prompt_sensitivity_deg+_1_2.png)
+
+___
 
 ## Section6. Experiments on harder tasks without success sparse rewards.
 
@@ -55,12 +69,14 @@ DEG still performs better than baselines on harder tasks without success sparse 
 | button-press-topdown    |  **0.60** | 0.33       |0.00|
 |assembly|**0.37**| 0.00| 0.00 |
 
+___
+
 ## Section7. Direct comparison between DEG and DEG+.
 
 We include the DEG results in the DEG+ figure and directly compare them. With success sparse reward, our method can perform much better, which is consistent with intuiation.
 ![Example Image](image/full-comparison.png)
 
-
+___
 
 
 ## Section8. Further reducing the videos used in DEG.
@@ -70,6 +86,8 @@ We further conducted additional experiments on the number of video clips. For dr
 ![Example Image](image/less_videos_deg_1_2.png)
 ![Example Image](image/less_videos_deg+_1_2.png)
 
+___
+
 ## Section9. Employing nearest neighbor rewards directly on videos.
 
 We don't employ RL episodic guide, directly employing nearest expert video in DEG, marked as DEG no guide. Results demonstrate that episodic guidance is useful.
@@ -78,6 +96,8 @@ We don't employ RL episodic guide, directly employing nearest expert video in DE
 |-|-|-|
 | button-press-topdown    |  **0.80** |   0.57   |
 | faucet-close |**0.93**| 0.33|
+
+___
 
 # Section10. combining DEG with RL backbone with higher exploration.
 
@@ -90,22 +110,25 @@ Under these two backbone variants, we validated the ability of DEG to improve pe
 
 | drawer-open-300k | DEG+ | Success Sparse Reward|
 |-|-|-|
-| std decaying   |  **1.00** |   0.20  |
+| std decaying (default)  |  **1.00** |   0.20  |
 | std = 1 |**1.00**| 0.33|
 | std = 2 |**1.00**| 0.67|
 
 | drawer-open-100k | DEG+ | Success Sparse Reward|
 |-|-|-|
-| std decaying   |  **1.00** |   0.00   |
+| std decaying (default)  |  **1.00** |   0.00   |
 | std = 1 |**1.00**| 0.00|
 | std = 2 |**0.97**| 0.23|
 
+___
 
 # Section11. Numerical comparison between all methods on main tasks.
 
 We summarize the quantitative performance of different methods on main tasks using a table.
 
 ![Example Image](image/comparison.png)
+
+___
 
 # Section12. Multitask ability of DEG.
 
@@ -124,7 +147,9 @@ We test the DEG's performance when faced with multiple tasks. We finetune a same
 | door-close | 1.00 | 1.00 | 
 | coffee-button | 1.00| 1.00 | 
 
-# Section12. Discussion of missed related works.
+___
+
+# Section13. Discussion of missed related works.
 
 We expand the Related Work section with several missed approaches [1,2,3,4] to better position DEG.
 
@@ -138,7 +163,9 @@ We expand the Related Work section with several missed approaches [1,2,3,4] to b
 
 ![Example Image](image/relatedwork.png)
 
-# Section13. We add additional baselines: Robodopamine and Roboreward.
+___
+
+# Section14. We add additional baselines: Robodopamine and Roboreward.
 
 We would like to note that these methods (VLAC, Robo-dopamine, VLA-RFT, and NORA1.5) are primarily designed for post-training or fine-tuning of VLA models, where the policy already exhibits a certain level of task competence. In contrast, DEG is designed for low-level control policy learning, where the reward function must provide meaningful guidance even under highly random initial behaviors (i.e., from scratch). This difference in setting makes direct comparison non-trivial, as some methods rely on reasonably good initial policies or stable rollouts to function effectively.
 
@@ -172,10 +199,10 @@ For Robodopamine, we employ the same expert videos (used in DEG) to construct th
 |faucet-close|0.13|**0.95**|
 
 	
+___
 
 
-
-# Section14. Visualization of generated videos without finetuning.
+# Section15. Visualization of generated videos without finetuning.
 
 Without domain adaptation, the large model does not know that the drawer is fixed, yet it still maintains a reasonable understanding of the environment and the dynamics of the robotic arm.
 
