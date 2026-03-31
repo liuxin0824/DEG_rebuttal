@@ -40,3 +40,26 @@ Then, we change the coefficient of the success sparse reward, as shown below. Th
 
 ![Example Image](image/theta.png)
 
+## Section5. Prompt sensitivity experiments.
+
+In the original paper, we provided as detailed a prompt as possible to maximize generation quality and verify the novel idea of using a large video generation model as an RL guide. In this section, we further conduct fine-tuning with very simple prompts. DEG and DEG+ (DEG with success sparse reward) can still perform effective RL guidance with very brief prompts ‘open the drawer’ and 'push the coffee machine button'.
+
+![Example Image](image/prompt_sensitivity_deg_1_2.png)
+![Example Image](image/prompt_sensitivity_deg+_1_2.png)
+
+## Section6. Experiments on harder tasks without success sparse rewards.
+
+DEG still performs better than baselines on harder tasks without success sparse rewards.
+| task | DEG | diffusion reward | viper|
+|-|-|-|-|
+| button-press-topdown    |  **0.60** | 0.33       |0.00|
+|assembly|**0.37**| 0.00| 0.00 |
+
+## Section7. Direct comparison between DEG and DEG+.
+
+We include the DEG results in the DEG+ figure and directly compare them. With success sparse reward, our method can perform much better, which is consistent with intuiation.
+![Example Image](image/full-comparison.png)
+
+
+
+
