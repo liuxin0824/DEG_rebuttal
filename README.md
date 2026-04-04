@@ -209,9 +209,22 @@ Without domain adaptation, the large model does not know that the drawer is fixe
 ![Example Image](image/nottuned.png)
 
 ---
+## Section16. More detailed discussion between related works and DEG
+
+For reward-model or world-model based methods, what we intended to convey is that, unlike learning reward models or action-conditioned world models, we don't heavily modify the pre-trained model. Instead, we only use a little bit of data and the lightweight LoRA fine-tuning to adapt the model to the target task, fully exploiting and leveraging the inherent capabilities of the pre-trained video generation model itself. 
+
+- In **VLM-based reward models**, since reward prediction is not a task that VLMs excel at, a dataset with sufficient quantity and diversity is required to elicit the model’s ability to predict rewards. 
+
+- For an **action-conditioned world model** built upon video generation models, the data demand is even higher due to the introduction of action conditioning and the requirement for the model to further understand environmental dynamics.
+
+- In contrast, the core objective of **DEG** is to drive policy training via the proposed dual-granularity contrastive reward based on the existing capabilities of the video generation model, rather than modifying the base model itself to endow it with stronger abilities to directly output rewards or future reconstruction. This key distinction enables DEG to effectively reduce the demand for data volume and training resources, and allows it to be easily and flexibly compatible with more advanced video generation models in the future, which is what we meant by “lightweight” in our previous description.
+
+We believe this represents the main difference between our method and others in the utilization of foundation models, and we add the above more detailed discussion to the related work section based on your feedback.
 
 
-## Section16. Analysis of roboreward & robodopamine results and training curves per trial.
+---
+
+## Section17. Analysis of roboreward & robodopamine results and training curves per trial.
 
 Roboreward and Robodopamine exhibit mediocre performance in from-scratch RL on MetaWorld, which may be mainly attributed to the following reasons:
 
@@ -227,7 +240,7 @@ We provide the eval-score curve and train-value curves for different trials in r
 
 ---
 
-## Section17. Comparison with VLA-RFT reward.
+## Section18. Comparison with VLA-RFT reward.
 
 We agree that VLA-RFT is an important work related to DEG. However, it was not initially included as a main baseline for comparison due to the following reasons.
 
