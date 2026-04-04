@@ -208,4 +208,21 @@ Without domain adaptation, the large model does not know that the drawer is fixe
 
 ![Example Image](image/nottuned.png)
 
+---
+
+
+## Section16. Analysis of roboreward & robodopamine results and training curves per trial.
+
+Roboreward and Robodopamine exhibit mediocre performance in from-scratch RL on MetaWorld, which may be mainly attributed to the following reasons:
+
+1. Distribution shift between the states during reward model training and those encountered at online RL. These methods are primarily designed for VLA fine-tuning, where most training data consists of successful trajectories or failed samples near successful ones. In contrast, learning low-level control from scratch involves a large number of random states rarely covered in their training data, which may lead to inaccurate reward predictions.
+2. Lacking coverage of MetaWorld domains in pre-training data. Since reward prediction is not the inherent task of VLMs, the VLM-based reward model may require more data to align its pre-trained reward prediction capability to unfamiliar tasks.
+3. Directly guiding online RL without any environmental feedback in single-camera MetaWorld is inherently challenging. Diffusion Reward is specifically designed for Metaworld, while it also demonstrates in its paper that it fails consistently on reward-free MetaWorld tasks. TeViR also struggles in the reward-free setting even with three camera views.
+
+We provide the eval-score curve and train-value curves for different trials in robodopamine, to verify the soundness of our training process. During the late stage of training in Trial 1, the agent explored higher rewards and obtained higher values, then successfully learned an effective policy shortly afterward.This indicates that reinforcement learning itself is functioning properly in our reproduction, and RoboDopamine also achieves decent discrimination between successful and failed trajectories.However, it lacks sufficient ability to distill useful information from low-quality trajectories in the early training phase, which precisely supports our first analysis.In addition, insufficient domain coverage during reward model training and the inherent difficulty of MetaWorld tasks also negatively impacted its performance.
+
+![Example Image](image/dopamine-train.png)
+
+
+
 
