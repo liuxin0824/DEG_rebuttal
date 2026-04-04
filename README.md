@@ -215,15 +215,40 @@ Without domain adaptation, the large model does not know that the drawer is fixe
 
 Roboreward and Robodopamine exhibit mediocre performance in from-scratch RL on MetaWorld, which may be mainly attributed to the following reasons:
 
-**r1**. Distribution shift between the states during reward model training and those encountered at online RL. These methods are primarily designed for VLA fine-tuning, where most training data consists of successful trajectories or failed samples near successful ones. In contrast, learning low-level control from scratch involves a large number of random states rarely covered in their training data, which may lead to inaccurate reward predictions.
+- **r1**. Distribution shift between the states during reward model training and those encountered at online RL. These methods are primarily designed for VLA fine-tuning, where most training data consists of successful trajectories or failed samples near successful ones. In contrast, learning low-level control from scratch involves a large number of random states rarely covered in their training data, which may lead to inaccurate reward predictions.
 
-**r2**. Lacking coverage of MetaWorld domains in pre-training data. Since reward prediction is not the inherent task of VLMs, the VLM-based reward model may require more data to align its pre-trained reward prediction capability to unfamiliar tasks.
+- **r2**. Lacking coverage of MetaWorld domains in pre-training data. Since reward prediction is not the inherent task of VLMs, the VLM-based reward model may require more data to align its pre-trained reward prediction capability to unfamiliar tasks.
 
-**r3**. Directly guiding online RL without any environmental feedback in single-camera MetaWorld is inherently challenging. Diffusion Reward is specifically designed for Metaworld, while it also demonstrates in its paper that it fails consistently on reward-free MetaWorld tasks. TeViR also struggles in the reward-free setting even with three camera views.
+- **r3**. Directly guiding online RL without any environmental feedback in single-camera MetaWorld is inherently challenging. Diffusion Reward is specifically designed for Metaworld, while it also demonstrates in its paper that it fails consistently on reward-free MetaWorld tasks. TeViR also struggles in the reward-free setting even with three camera views.
 
-We provide the eval-score curve and train-value curves for different trials in robodopamine, to verify the soundness of our training process. During the late stage of training in Trial 1, the agent explored higher rewards and obtained higher values, then successfully learned an effective policy shortly afterward. This indicates that RL itself is functioning properly in our reproduction, and RoboDopamine also achieves decent discrimination between successful and failed trajectories. However, it may lack sufficient ability to distill useful information from low-quality trajectories in the early training phase (corresponding to r1 above), which results in the failure in the other trials. In addition, insufficient domain coverage during reward model training (r2) and the inherent difficulty of reward-free MetaWorld tasks (r3) also negatively impacted its performance.
+We provide the eval-score curve and train-value curves for different trials in robodopamine, to verify the soundness of our training process. During the late stage of training in Trial 1, the agent explored higher rewards and obtained higher values, then successfully learned an effective policy shortly afterward. This indicates that RL itself is functioning properly in our reproduction, and RoboDopamine also achieves decent discrimination between successful and failed trajectories. However, it may lack sufficient ability to distill useful information from low-quality trajectories in the early training phase (corresponding to **r1** above), which results in the failure in the other trials. In addition, insufficient domain coverage during reward model training (**r2**) and the inherent difficulty of reward-free MetaWorld tasks (**r3**) also negatively impacted its performance.
 
 ![Example Image](image/dopamine-train.png)
+
+---
+
+## Section17. Comparison with VLA-RFT reward.
+
+We agree that VLA-RFT is an important work related to DEG. However, it was not initially included as a main baseline for comparison due to the following reasons.
+
+- **First**, VLA-RFT conducts offline fine-tuning on large-scale action-labeled offline data, focusing on offline fine-tuning for VLAs without online interaction. DEG, by contrast, aims to improve online sampling efficiency and expert data efficiency for video imitation learning. Their research goals differ substantially.
+
+- **Second**, VLA-RFT uses GRPO tailored for large models and VLA with prior policies. Methods such as DEG and diffusion reward design rewards for low-level control learning and support RL from scratch. Fair comparison under different policy initializations and RL backbones can be hard.
+
+- **Third**, VLA-RFT relies on pretrained models and extensive offline action data, while DEG is distinguished by its extremely light use of expert data.
+
+- **Fourth**, VLA-RFT uses many expert trajectories but has no online stage, so it cannot be evaluated by sampling efficiency—a key metric for DEG and baselines such as diffusion reward.
+
+For these reasons, we did not include VLA-RFT as a main baseline. Instead, we used RoboDopamine and RoboReward, which can be naturally integrated with online RL and fairly compared under unified settings.
+
+To address your concern, we conduct another comparison: we use VLA-RFT’s reward to guide online RL while keeping all other settings identical to DEG. This highlights the reward design differences and demonstrates DEG’s contribution. Since VLA-RFT requires a world model for RL, the real online environment serves as its optimal world model, which benefits its reward module and enables evaluation via sampling efficiency.
+
+![Example Image](image/vlarft.png)
+
+VLA-RFT-online refers to VLA-RFT combined with online RL.Unlike DEG, we do not employ a video generation model in VLA-RFT; instead, we directly provide sufficient expert videos.
+DEG achieves superior policy performance across all tasks except drawer-close, and attains higher sample efficiency on all tasks. The reward mechanism of VLA-RFT, which directly matches sampled trajectories with expert videos frame‑by‑frame in temporal order, is specifically designed for VLA but not suitable for from‑scratch low‑level control policy training. It struggles to assign high rewards to high‑quality exploratory trajectory segments that are not temporally aligned with expert videos. For instance, if an expert video sequentially contains Trajectory 1, Trajectory 2, and Trajectory 3, the agent will not receive a reward if it explores Trajectory 1 during the period corresponding to Trajectory 2 when the policy is still immature. Furthermore, based on findings from previous studies [1], directly computing distances at the image level is not an efficient choice for standard online RL.
+
+[1] Behavior From the Void: Unsupervised Active Pre-Training. NeurIPS 2021.
 
 
 
