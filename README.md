@@ -226,9 +226,9 @@ We believe this represents the main difference between our method and others in 
 
 Roboreward and Robodopamine exhibit mediocre performance in from-scratch RL on MetaWorld, which may be mainly attributed to the following reasons:
 
-- **r1**. Distribution shift between the states during reward model training and those encountered at online RL. These methods are primarily designed for VLA fine-tuning, where most training data consists of successful trajectories or failed samples near successful ones. In contrast, learning low-level control from scratch involves a large number of random states rarely covered in their training data, which may lead to inaccurate reward predictions.
+- **r1**. Distribution shift between the states during reward model training and those encountered at online RL. These methods are primarily designed for VLA fine-tuning, where most training data consists of successful trajectories or failed samples near successful ones. In contrast, learning low-level control from scratch involves a large number of random states rarely covered in their training data, which may lead to model confusion and inaccurate reward predictions.
 
-- **r2**. Lacking coverage of MetaWorld domains in pre-training data. Since reward prediction is not the inherent task of VLMs, the VLM-based reward model may require more data to align its pre-trained reward prediction capability to unfamiliar tasks.
+- **r2**. Lacking coverage of MetaWorld domains in pre-training data. Since reward prediction is not an inherent task of VLMs, VLM-based reward models may suffer from generalization issues on unseen domains and may require more data to align their pre-trained reward-prediction capabilities with unfamiliar tasks.
 
 - **r3**. Directly guiding online RL without any environmental feedback in single-camera MetaWorld is inherently challenging. Diffusion Reward is specifically designed for Metaworld, while it also demonstrates in its paper that it fails consistently on reward-free MetaWorld tasks. TeViR also struggles in the reward-free setting even with three camera views.
 
