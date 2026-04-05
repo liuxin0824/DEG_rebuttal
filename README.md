@@ -250,9 +250,9 @@ We agree that VLA-RFT is an important work related to DEG. However, it was not i
 
 - **Fourth**, VLA-RFT uses many expert trajectories but has no online stage, so it cannot be evaluated directly by online sampling efficiency—a key metric for DEG and baselines such as diffusion reward and TeViR.
 
-For these reasons, we did not include VLA-RFT as a main baseline. Instead, we used RoboDopamine and RoboReward, which can be naturally integrated with online RL and fairly compared with exisiting methods under unified settings.
+For these reasons, we did not include VLA-RFT as a main baseline. Instead, we used RoboDopamine and RoboReward, which can be naturally integrated with online RL and fairly compared with existing methods under unified settings.
 
-To address your concern, we conduct another comparison: we use VLA-RFT’s reward to guide online RL while keeping all other settings identical to DEG and current baselines. This highlights the reward design differences and demonstrates DEG’s contribution in reward engineering. Since VLA-RFT requires a world model for RL, directly achieve online RL with real environments is very suitable for VLA-RFT reward, because the real online environment can serve as an optimal world model. This benefits its reward module, and enables evaluation via sampling efficiency and direct comparison with DEG.
+To address your concern, we conduct another comparison: we use VLA-RFT’s reward to guide online RL while keeping all other settings identical to DEG and current baselines. This highlights the reward design differences and demonstrates DEG’s contribution in reward engineering. Since VLA-RFT requires a world model for RL, directly achieving online RL with real environments is very suitable for VLA-RFT reward, because the real online environment can serve as an optimal world model. This benefits its reward module, and enables evaluation via sample efficiency and direct comparison with DEG.
 
 ![Example Image](image/vlarft.png)
 
