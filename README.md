@@ -242,21 +242,22 @@ We provide the eval-score curve and train-value curves for different trials in r
 
 We agree that VLA-RFT is an important work related to DEG. However, it was not initially included as a main baseline for comparison due to the following reasons.
 
-- **First**, VLA-RFT conducts offline fine-tuning on large-scale action-labeled offline data, focusing on offline fine-tuning for VLAs without online interaction. DEG, by contrast, aims to improve online sampling efficiency and expert data efficiency for video imitation learning. Their research goals differ substantially.
+- **First**, VLA-RFT conducts offline fine-tuning on large-scale action-labeled offline data, focusing on offline fine-tuning for VLAs without online interaction. DEG, by contrast, aims to improve online sampling efficiency and expert data efficiency for online video imitation learning. Their research goals differ substantially.
 
 - **Second**, VLA-RFT uses GRPO tailored for large models and VLA with prior policies. Methods such as DEG and diffusion reward design rewards for low-level control learning and support RL from scratch. Fair comparison under different policy initializations and RL backbones can be hard.
 
-- **Third**, VLA-RFT relies on pretrained models and extensive offline action data, while DEG is distinguished by its extremely light use of expert data.
+- **Third**, VLA-RFT relies on sufficient offline action-labeled data for world model training, while DEG is distinguished by its extremely light use of expert data.
 
-- **Fourth**, VLA-RFT uses many expert trajectories but has no online stage, so it cannot be evaluated by sampling efficiency—a key metric for DEG and baselines such as diffusion reward.
+- **Fourth**, VLA-RFT uses many expert trajectories but has no online stage, so it cannot be evaluated directly by online sampling efficiency—a key metric for DEG and baselines such as diffusion reward and TeViR.
 
-For these reasons, we did not include VLA-RFT as a main baseline. Instead, we used RoboDopamine and RoboReward, which can be naturally integrated with online RL and fairly compared under unified settings.
+For these reasons, we did not include VLA-RFT as a main baseline. Instead, we used RoboDopamine and RoboReward, which can be naturally integrated with online RL and fairly compared with exisiting methods under unified settings.
 
-To address your concern, we conduct another comparison: we use VLA-RFT’s reward to guide online RL while keeping all other settings identical to DEG. This highlights the reward design differences and demonstrates DEG’s contribution. Since VLA-RFT requires a world model for RL, the real online environment serves as its optimal world model, which benefits its reward module and enables evaluation via sampling efficiency.
+To address your concern, we conduct another comparison: we use VLA-RFT’s reward to guide online RL while keeping all other settings identical to DEG and current baselines. This highlights the reward design differences and demonstrates DEG’s contribution in reward engineering. Since VLA-RFT requires a world model for RL, directly achieve online RL with real environments is very suitable for VLA-RFT reward, because the real online environment can serve as an optimal world model. This benefits its reward module, and enables evaluation via sampling efficiency and direct comparison with DEG.
 
 ![Example Image](image/vlarft.png)
 
-VLA-RFT-online refers to VLA-RFT combined with online RL.Unlike DEG, we do not employ a video generation model in VLA-RFT; instead, we directly provide sufficient expert videos.
+VLA-RFT-online refers to VLA-RFT combined with online RL. Unlike DEG, we do not employ a video generation model in VLA-RFT-online; instead, we directly provide sufficient expert videos for it.
+
 DEG achieves superior policy performance across all tasks except drawer-close, and attains higher sample efficiency on all tasks. The reward mechanism of VLA-RFT, which directly matches sampled trajectories with expert videos frame‑by‑frame in temporal order, is specifically designed for VLA but not suitable for from‑scratch low‑level control policy training. It struggles to assign high rewards to high‑quality exploratory trajectory segments that are not temporally aligned with expert videos. For instance, if an expert video sequentially contains Trajectory 1, Trajectory 2, and Trajectory 3, the agent will not receive a reward if it explores Trajectory 1 during the period corresponding to Trajectory 2 when the policy is still immature. Furthermore, based on findings from previous studies [1], directly computing distances at the image level is not an efficient choice for standard online RL.
 
 [1] Behavior From the Void: Unsupervised Active Pre-Training. NeurIPS 2021.
