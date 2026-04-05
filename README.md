@@ -258,9 +258,13 @@ To address your concern, we conduct another comparison: we use VLA-RFT’s rewar
 
 VLA-RFT-online refers to VLA-RFT combined with online RL. Unlike DEG, we do not employ a video generation model in VLA-RFT-online; instead, we directly provide sufficient expert videos for it.
 
-DEG achieves superior policy performance across all tasks except drawer-close, and attains higher sample efficiency on all tasks. The reward mechanism of VLA-RFT, which directly matches sampled trajectories with expert videos frame‑by‑frame in temporal order, is specifically designed for VLA but not suitable for from‑scratch low‑level control policy training. It struggles to assign high rewards to high‑quality exploratory trajectory segments that are not temporally aligned with expert videos. For instance, if an expert video sequentially contains Trajectory 1, Trajectory 2, and Trajectory 3, the agent will not receive a reward if it explores Trajectory 1 during the period corresponding to Trajectory 2 when the policy is still immature. Furthermore, based on findings from previous studies [1], directly computing distances at the image level is not an efficient choice for standard online RL.
+DEG achieves superior policy performance across all tasks except drawer-close, and attains higher sample efficiency on all tasks. The reward mechanism of VLA-RFT, which directly matches sampled trajectories with expert videos frame‑by‑frame in temporal order, is specifically designed for VLA but not suitable for from‑scratch low‑level control policy training. It struggles to assign high rewards to high‑quality exploratory trajectory segments that are not temporally aligned with expert videos. For instance, if an expert video sequentially contains Trajectory 1, Trajectory 2, and Trajectory 3, the agent will not receive a reward if it explores Trajectory 1 during the period corresponding to Trajectory 2 when the policy is still immature. Furthermore, according to previous studies [1], directly computing distances and rewards at the image level is not an efficient choice for standard online RL.
 
-[1] Behavior From the Void: Unsupervised Active Pre-Training. NeurIPS 2021.
+[1] Curiosity-driven Exploration by Self-supervised Prediction. ICML 2017.
+
+[2] Exploration by random network distillation. ICLR 2019.
+
+[3] Behavior From the Void: Unsupervised Active Pre-Training. NeurIPS 2021.
 
 
 
