@@ -198,6 +198,8 @@ For Robodopamine, we employ the same expert videos (used in DEG) to construct th
 |drawer-open|0.00|**1.00**|
 |faucet-close|0.13|**0.95**|
 
+Please refer to **Section17. Analysis of roboreward & robodopamine results and training curves per trial.** for detailed result analysis.
+
 	
 ___
 
