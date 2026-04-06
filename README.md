@@ -198,7 +198,7 @@ For Robodopamine, we employ the same expert videos (used in DEG) to construct th
 |drawer-open|0.00|**1.00**|
 |faucet-close|0.13|**0.95**|
 
-Please refer to **Section17. Analysis of roboreward & robodopamine results and training curves per trial.** for detailed result analysis.
+We strictly follow their official tutorials for reproduction, using both official models and fine-tuning code. For RoboReward, we directly plugg its official 8B model into the DrQv2 framework. For RoboDopamine, we annotate the fine-tuning videos (same as those used in DEG) following its official instructions, fine-tune its official 8B model, and employ the same RL framework. Their RL backbone and settings are both identical to those of DEG. Please refer to **Section17. Analysis of roboreward & robodopamine results and training curves per trial.** for detailed result analysis.
 
 	
 ___
