@@ -66,7 +66,7 @@ ___
 DEG still performs better than baselines on harder tasks without success sparse rewards.
 | task | DEG | diffusion reward | viper|
 |-|-|-|-|
-| button-press-topdown    |  **0.60** | 0.33       |0.00|
+| button-press-topdown    |  **0.80** | 0.33       |0.00|
 |assembly|**0.37**| 0.00| 0.00 |
 
 ___
